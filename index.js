@@ -22,20 +22,20 @@ const start = (aruga = new Client()) => {
 	const groups = await aruga.getAllGroups()
 	// kondisi ketika batas group bot telah tercapai,ubah di file settings/setting.json
 	if (groups.length > groupLimit) {
-	await aruga.sendText(chat.id, `Sorry, the group on this bot is full\nMax Group is: ${groupLimit}`).then(() => {
+	await aruga.sendText(chat.id, `Maaf, Grup Bot Telah Mencapai limit\nFull Group : ${groupLimit}`).then(() => {
 	      aruga.leaveGroup(chat.id)
 	      aruga.deleteChat(chat.id)
 	  }) 
 	} else {
 	// kondisi ketika batas member group belum tercapai, ubah di file settings/setting.json
 	    if (chat.groupMetadata.participants.length < memberLimit) {
-	    await aruga.sendText(chat.id, `Sorry, BOT comes out if the group members do not exceed ${memberLimit} people`).then(() => {
+	    await aruga.sendText(chat.id, `Maaf, BOT tidak bisa masuk ke grup sini karena member tidak cukup untuk memasukan bot memerlukan ${memberLimit} member`).then(() => {
 	      aruga.leaveGroup(chat.id)
 	      aruga.deleteChat(chat.id)
 	    })
 	    } else {
         await aruga.simulateTyping(chat.id, true).then(async () => {
-          await aruga.sendText(chat.id, `what up y'all~, I'm Thoriq BOT. Untuk mencari tahu command BOT, ketik ${prefix}menu`)
+          await aruga.sendText(chat.id, `what up y'all~, I'm Ahmad BOT. Untuk mencari tahu command BOT, ketik ${prefix}menu`)
         })
 	    }
 	}
@@ -55,7 +55,7 @@ const start = (aruga = new Client()) => {
         // kondisi ketika seseorang dikick/keluar dari group
         if (event.action === 'remove' && event.who !== host) {
             const zchat = await aruga.getProfilePicFromServer(event.who)
-            const aigo = `eh @${event.who.replace('@c.us', '')} malah keluar:(`
+            const aigo = `eh @${event.who.replace('@c.us', '')} hati hati ya dijalan:)`
             await aruga.sendFileFromUrl(event.chat, zchat, 'profile.jpg', aigo)
         }
     })
