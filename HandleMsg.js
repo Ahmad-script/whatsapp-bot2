@@ -152,7 +152,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
 		
         // [IDENTIFY]
-        const ownerNumber = "628985749687@c.us"
+        const ownerNumber = "6283065614902@c.us"
         const isOwnerBot = ownerNumber.includes(pengirim)
         const isOwner = ownerNumber.includes(pengirim)
         const isOwnerB = ownerNumber.includes(pengirim)
@@ -717,7 +717,7 @@ module.exports = HandleMsg = async (aruga, message) => {
            break
         case 'ownerbot':
             await aruga.sendContact(from, ownerNumber)
-            .then(() => aruga.sendText(from, 'Gausah banyak tanya, ini bukan StackOverFlow!'))
+            .then(() => aruga.sendText(from, 'Itu Owner Gw, Mau Lu Apain ha?'))
             break
             case 'maps':
             if (!isGroupAdmins) return aruga.reply(from, 'Fitur ini hanya bisa digunakan didalam grup!', id)
@@ -1090,9 +1090,9 @@ module.exports = HandleMsg = async (aruga, message) => {
             }
             break
         case 'setgroupname':
-            if (!isGroupMsg) return aruga.reply(from, `Fitur ini hanya bisa di gunakan dalam group`, id)
-            if (!isGroupAdmins) return aruga.reply(from, `Fitur ini hanya bisa di gunakan oleh admin group`, id)
-            if (!isBotGroupAdmins) return aruga.reply(from, `Fitur ini hanya bisa di gunakan ketika bot menjadi admin`, id)
+            if (!isGroupMsg) return aruga.reply(from, `Khusus dalam grup bwang`, id)
+            if (!isGroupAdmins) return aruga.reply(from, `Lu siapa ha? emang lu admin?`, id)
+            if (!isBotGroupAdmins) return aruga.reply(from, `Gw belum admin bodo`, id)
             const namagrup = body.slice(14)
             const sebelum = chat.groupMetadata.gcok
             let halaman = global.page ? global.page : await aruga.getPage()
@@ -1101,10 +1101,10 @@ module.exports = HandleMsg = async (aruga, message) => {
             aruga.sendTextWithMentions(from, `Nama group telah diubah oleh admin @${sender.id.replace('@c.us','')}\n\n• Before: ${sebelum}\n• After: ${namagrup}`)
             break
         case 'setname':
-                if (!isOwnerB) return aruga.reply(from, `Perintah ini hanya bisa di gunakan oleh Owner Bot!`, id)
+                if (!isOwnerB) return aruga.reply(from, `Lu siapa ha? emang lu owner gw?`, id)
                     const setnem = body.slice(9)
                     await aruga.setMyName(setnem)
-                    aruga.sendTextWithMentions(from, `Makasih Nama Barunya @${sender.id.replace('@c.us','')} 😘`)
+                    aruga.sendTextWithMentions(from, `Makasih Nama Barunya bos @${sender.id.replace('@c.us','')} 😘`)
                 break
                 case 'read':
                     if (!isGroupMsg) return aruga.reply(from, `Perintah ini hanya bisa di gunakan dalam group!`, id)                
@@ -1123,10 +1123,10 @@ module.exports = HandleMsg = async (aruga, message) => {
                     }
                     break
         case 'setstatus':
-                if (!isOwnerB) return aruga.reply(from, `Perintah ini hanya bisa di gunakan oleh Owner Bot!`, id)
+                if (!isOwnerB) return aruga.reply(from, `Lu siapa ha? emang luowner gw?`, id)
                     const setstat = body.slice(11)
                     await aruga.setMyStatus(setstat)
-                    aruga.sendTextWithMentions(from, `Makasih Status Barunya @${sender.id.replace('@c.us','')} 😘`)
+                    aruga.sendTextWithMentions(from, `Makasih Status Barunya bos @${sender.id.replace('@c.us','')} 😘`)
                 break
         case 'botstat': {
             const loadedMsg = await aruga.getAmountOfLoadedMessages()
@@ -1293,7 +1293,7 @@ axios.get(`https://arugaz.herokuapp.com/api/howbucins`).then(res => {
 	})
     break
 case 'setdesc':
-    if (!isGroupAdmins) return aruga.reply(from, 'Fitur ini hanya bisa digunakan oleh Admin!')
+    if (!isGroupAdmins) return aruga.reply(from, 'Lu siapa ha? emang lu admin?')
     const descnya = body.slice(9)
     const ganti = await aruga.setGroupDescription(descnya)
         aruga.setGroupDescription(groupId, ganti)
@@ -1520,12 +1520,12 @@ break
 	//Group All User
 	case 'grouplink':
     case 'linkgc':
-            if (!isBotGroupAdmins) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan ketika bot menjadi admin', id)
+            if (!isBotGroupAdmins) return aruga.reply(from, 'Gw belum admin bodo', id)
             if (isGroupMsg) {
                 const inviteLink = await aruga.getGroupInviteLink(groupId);
                 aruga.sendLinkWithAutoPreview(from, inviteLink, `\nLink group *${name}* Gunakan *${prefix}revoke* untuk mereset Link group`)
             } else {
-            	aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
+            	aruga.reply(from, 'Khusus grup bwang', id)
             }
             break
 	case "revoke":
@@ -2433,9 +2433,9 @@ case 'ytsearch':
                 }
             break
         case 'kick':
-            if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
-            if (!isGroupAdmins && !isOwnerB) return aruga.reply(from, 'Gagal, fitur ini bakalan work kalo dipake sama admin, member mah gausah sok keras', id)
-            if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, kalo mau pake fitur ini, jadiin gw admin', id)
+            if (!isGroupMsg) return aruga.reply(from, 'Maaf, khusus grup bwang', id)
+            if (!isGroupAdmins && !isOwnerB) return aruga.reply(from, 'Gagal, lu siapa ha? emang lu admin?', id)
+            if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, gw belum admin bodo', id)
             if (mentionedJidList.length === 0) return aruga.reply(from, 'Maaf, format pesan salah.\nSilahkan tag satu atau lebih orang yang akan dikeluarkan', id)
             if (mentionedJidList[0] === botNumber) return await aruga.reply(from, 'Maaf, format pesan salah.\nTidak dapat mengeluarkan akun bot sendiri', id)
             await aruga.sendTextWithMentions(from, `Done!, mengeluarkan ${mentionedJidList.map(x => `@${x.replace('@c.us', '')} agar menjadi anak pungut`).join('\n')}`)
@@ -2445,9 +2445,9 @@ case 'ytsearch':
             }
             break
             case 'promote':
-                if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
-                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, fitur ini bakalan work kalo dipake sama admin, member mah gausah sok keras', id)
-                if (!isBotGroupAdmins && !isOwnerB) return aruga.reply(from, 'Gagal, kalo mau pake fitur ini jadiin gw admin', id)
+                if (!isGroupMsg) return aruga.reply(from, 'Maaf, khusus grup bwang', id)
+                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, lu siapa ha? emang lu admin?', id)
+                if (!isBotGroupAdmins && !isOwnerB) return aruga.reply(from, 'Gagal, gw belum admin bodo', id)
                 if (mentionedJidList.length !== 1) return aruga.reply(from, 'Maaf, hanya bisa mempromote 1 user', id)
                 if (groupAdmins.includes(mentionedJidList[0])) return await aruga.reply(from, 'GOBLOG, tuh anak udah jadi admin bego.', id)
                 if (mentionedJidList[0] === botNumber) return await aruga.reply(from, 'Maaf, format pesan salah.\nTidak dapat mempromote akun bot sendiri', id)
@@ -2455,9 +2455,9 @@ case 'ytsearch':
                 await aruga.sendTextWithMentions(from, `Done, ciee, @${mentionedJidList[0].replace('@c.us', '')} Diangkat derajatnyaaa xixi.`)
                 break
             case 'demote':
-                if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
-                if (!isGroupAdmins && !isOwnerB) return aruga.reply(from, 'Gagal, fitur ini bakalan work kalo dipake sama admin, member mah gausah sok keras', id)
-                if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, kalo mau pake fitur ini, jadiin gw admin', id)
+                if (!isGroupMsg) return aruga.reply(from, 'Maaf, khusus grup bwang', id)
+                if (!isGroupAdmins && !isOwnerB) return aruga.reply(from, 'Gagal, lu siapa ha? emang lu admin?', id)
+                if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, gw belum admin bodo', id)
                 if (mentionedJidList.length !== 1) return aruga.reply(from, 'Maaf, hanya bisa mendemote 1 user', id)
                 if (!groupAdmins.includes(mentionedJidList[0])) return await aruga.reply(from, 'GOBLOG, tuh anak udah belom jadi admin mau lu demote. mana bisa tolol.', id)
                 if (mentionedJidList[0] === botNumber) return await aruga.reply(from, 'Maaf, format pesan salah.\nTidak dapat mendemote akun bot sendiri', id)
@@ -2635,9 +2635,9 @@ case 'ytsearch':
 			}
 			break
 		case 'seticon':
-			if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
-            if (!isGroupAdmins) return aruga.reply(from, 'Gagal, perintah ini hanya dapat digunakan oleh admin grup!', id)
-            if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, silahkan tambahkan bot sebagai admin grup!', id)
+			if (!isGroupMsg) return aruga.reply(from, 'Maaf, khusus grup bwang', id)
+			if (!isGroupMsg) return aruga.reply(from, 'Maaf, Lu siapa ha? emang lu admin?', id)
+            if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, gw belum admin bodo', id)
 			if (isMedia && type == 'image' || isQuotedImage) {
 				const dataMedia = isQuotedImage ? quotedMsg : message
 				const _mimetype = dataMedia.mimetype
@@ -2656,9 +2656,9 @@ case 'ytsearch':
 			
         //Owner Group
         case 'kickall': //mengeluarkan semua member
-        if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
-        if (!isOwner) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai oleh owner grup!', id)
-        if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, silahkan tambahkan bot sebagai admin grup!', id)
+        if (!isGroupMsg) return aruga.reply(from, 'Maaf, khusus grup bwang', id)
+        if (!isOwner) return aruga.reply(from, 'Maaf, Lu siapa ha? emang lu owner grup?', id)
+        if (!isBotGroupAdmins) return aruga.reply(from, 'Gagal, gw belum admin bodo', id)
             const allMem = await aruga.getGroupMembers(groupId)
             for (let i = 0; i < allMem.length; i++) {
                 if (groupAdmins.includes(allMem[i].id)) {
@@ -2672,14 +2672,14 @@ case 'ytsearch':
 
         //Owner Bot
         case 'addprem':
-            if (!isOwnerB) return aruga.reply(from, 'Perintah ini hanya bisa digunakan oleh Owner Bot!', id)
+            if (!isOwnerB) return aruga.reply(from, 'Lu siapa ha? emang lu owner gw?', id)
             if (args.length == 0) return aruga.reply(from, `Untuk menambah seseorang menjadi member premium`, id)
             prem.push(args[0]+'@c.us')
             fs.writeFileSync('./lib/database/prem.json', JSON.stringify(prem))
             aruga.reply(from, 'success add', id)
             break
         case 'ban':
-            if (!isOwnerB) return aruga.reply(from, 'Perintah ini hanya untuk Owner bot!', id)
+            if (!isOwnerB) return aruga.reply(from, 'Lu siapa ha? emang lu owner gw?', id)
             if (args.length == 0) return aruga.reply(from, `Untuk banned seseorang agar tidak bisa menggunakan commands\n\nCaranya ketik: \n${prefix}ban add 628xx --untuk mengaktifkan\n${prefix}ban del 628xx --untuk nonaktifkan\n\ncara cepat ban banyak digrup ketik:\n${prefix}ban @tag @tag @tag`, id)
             if (args[0] == 'add') {
                 banned.push(args[1]+'@c.us')
@@ -2700,7 +2700,7 @@ case 'ytsearch':
             }
             break
             case 'delprem':
-                if (!isOwnerB) return aruga.reply(from, 'Perintah ini hanya bisa digunakan oleh Owner Bot!', id)
+                if (!isOwnerB) return aruga.reply(from, 'Lu siapa ha? emang lu owner gw?', id)
             if (args.length == 0) return aruga.reply(from, `Untuk mendelete seseorang menjadi member biasa`, id)
             let prsl = prem.indexOf(args[0]+'@c.us')
             prem.splice(prsl, 1)
@@ -2745,7 +2745,7 @@ case 'ytsearch':
                     break
             case 'groupinfo' :
             case 'gcinfo' :
-                    if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', message.id)
+                    if (!isGroupMsg) return aruga.reply(from, 'khusus grup bwang', message.id)
                     var totalMem = chat.groupMetadata.participants.length
                     var desc = chat.groupMetadata.desc
                     var groupname = name
@@ -2777,7 +2777,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
 
                     break
                     case 'grupbot':
-                        const ch = `https://chat.whatsapp.com/Lt96VeJbmMHFeB1QDDGtPM\n\nSkuy join grup Bot niscaya mendapatkan Doi`
+                        const ch = `https://chat.whatsapp.com/DxdS1IGOuBrEVBo7cxgr7s\n\nSkuy join grup Bot niscaya mendapatkan Doi`
                         await aruga.sendText(from, ch, id)
                         break
                     case 'mtk':
@@ -2880,7 +2880,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
                         aruga.reply(from, `Success delete premium member`, id)
                         break
                     case 'delsay':
-                        if (!isGroupMsg) return aruga.reply(from, `Perintah ini hanya bisa di gunakan didalam grup!`, id)
+                        if (!isGroupMsg) return aruga.reply(from, `khusus grup bwang`, id)
                             const delsay = dsay.indexOf(body.slice(8))
                             dsay.splice(delsay, 1)
                             fs.writeFileSync('./lib/database/say.json', JSON.stringify(dsay))
@@ -2957,7 +2957,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
                      await aruga.sendText(from, `Pertanyaan: *${bsk}* \n\nJawaban: ${jbsk}`)
                      break
             case 'listban':
-                let bened = `This is list of banned number\nTotal : ${banned.length}\n`
+                let bened = `Berikut adalah list no yang di ban\nTotal : ${banned.length}\n`
                 for (let i of banned) {
                     bened += `➸ ${i.replace(/@c.us/g,'')}\n`
                 }
@@ -2996,14 +2996,14 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
                 }
                 break
         case 'listblock':
-            let hih = `This is list of blocked number\nTotal : ${blockNumber.length}\n`
+            let hih = `Berikut adalah list no yang di block\nTotal : ${blockNumber.length}\n`
             for (let i of blockNumber) {
                 hih += `➸ ${i.replace(/@c.us/g,'')}\n`
             }
             await aruga.reply(from, hih, id)
             break
         case 'bc':
-            if (!isOwnerB) return aruga.reply(from, `Perintah ini hanya untuk Owner Urbae`, id)
+            if (!isOwnerB) return aruga.reply(from, `Lu siapa ha? emang lu owner gw?`, id)
                 bctxt = body.slice(4)
                 txtbc = `〘 *U R B A E  B O T* 〙\n\n${bctxt}`
                 const semuagrup = await aruga.getAllChatIds();
@@ -3024,7 +3024,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
                 }
                 break
             case 'leaveall': //mengeluarkan bot dari semua group serta menghapus chatnya
-            if (!isOwnerB) return aruga.reply(from, 'Perintah ini hanya untuk Owner bot', id)
+            if (!isOwnerB) return aruga.reply(from, 'Lu siapa ha? emang lu owner gw?', id)
             const allChatso = await aruga.getAllChatIds()
             const loadedx = await aruga.getAmountOfLoadedMessages()
             const allGroupq = await aruga.getAllGroups()
@@ -3036,7 +3036,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
             aruga.reply(from, 'Success leave all group!', id)
             break
         case 'clearall': //menghapus seluruh pesan diakun bot
-            if (!isOwnerBot) return aruga.reply(from, 'Perintah ini hanya untuk Owner bot', id)
+            if (!isOwnerBot) return aruga.reply(from, 'Lu siapa ha? emang lu owner gw?', id)
             const allChatx = await aruga.getAllChats()
             for (let dchat of allChatx) {
                 await aruga.deleteChat(dchat.id)
@@ -3046,7 +3046,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
         default:
             break
         case 'adminlist':
-            if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
+            if (!isGroupMsg) return aruga.reply(from, 'khusus grup bwang', id)
             let mimin = ''
             for (let admon of groupAdmins) {
                 mimin += `➸ @${admon.replace(/@c.us/g, '')}\n` 
@@ -3060,7 +3060,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
                 await aruga.sendText(from, `Total Member in *${tulul}* is : *${yaelah}*` )
                 break
         case 'ownergc':
-            if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
+            if (!isGroupMsg) return aruga.reply(from, 'khusus grup bwang', id)
             const Owner_ = chat.groupMetadata.owner
             await aruga.sendTextWithMentions(from, `Owner Group : @${Owner_}`)
             break
